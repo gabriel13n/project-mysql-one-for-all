@@ -1,6 +1,4 @@
-DROP DATABASE IF EXISTS SpotifyClone;
-
-CREATE DATABASE SpotifyClone;
+CREATE DATABASE IF NOT EXISTS SpotifyClone;
 
 CREATE TABLE SpotifyClone.plans (
     id INT AUTO_INCREMENT,
@@ -50,11 +48,13 @@ CREATE TABLE SpotifyClone.songs (
 );
 
 CREATE TABLE SpotifyClone.song_history (
-	user_id INT NOT NULL,
-    song_id INT NOT NULL,
+	user_id           INT  NOT NULL,
+    song_id           INT  NOT NULL,
     reproduction_date DATE NOT NULL,
+
     PRIMARY KEY (user_id, song_id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (song_id) REFERENCES songs (id)
 );
 
 CREATE TABLE SpotifyClone.followers (
@@ -62,6 +62,8 @@ CREATE TABLE SpotifyClone.followers (
     user_id INT NOT NULL,
     PRIMARY KEY (artist_id , user_id),
     FOREIGN KEY (artist_id)
+        REFERENCES artists (id),
+    FOREIGN KEY (user_id)
         REFERENCES users (id)
 );
 
