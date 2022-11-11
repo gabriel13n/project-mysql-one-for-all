@@ -12,4 +12,3 @@ WHERE
     pl.name IN ('gratuito' , 'pessoal')
 GROUP BY nome
 ORDER BY nome ASC;
---test
